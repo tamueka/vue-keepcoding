@@ -1,3 +1,4 @@
+
 <template>
   <div class="user">
     <img :src="user.avatar" alt="">
@@ -8,7 +9,7 @@
 
 <script>
 export default {
-  name: 'usuario',
+  name: 'Usuario',
   props: {
     user: {
       type: Object,
