@@ -9,7 +9,7 @@
     <button v-if="ifNext" @click="next">Siguiente</button>
     <button v-if="ifPrev" @click="prev">Anterior</button>
     <div v-if="userSelect">
-      <usuario :userId="userSelect"></usuario>
+      <usuario :user='userSelect'></usuario>
     </div>
   </div>
 </template>
@@ -25,7 +25,7 @@ function loadUsers() {
       const { data, page, total, total_pages } = response.data;
       this.users = data;
       this.page = page;
-      this.total = total;
+      this.$store.dispatch('changeTotal', total);
       // eslint-disable-next-line camelcase
       this.totalPages = total_pages;
     });
@@ -40,16 +40,12 @@ export default {
     return {
       users: [],
       page: 1,
-      total: 0,
       totalPages: 0,
-      userSelect: null,
     };
   },
   methods: {
     loadUser(user) {
-      // eslint-disable-next-line no-console
-      console.log('load user');
-      this.userSelect = user.id;
+      this.$store.dispatch('clickUser', user.id);
     },
     loadUsers() {
       loadUsers.bind(this)();
@@ -69,6 +65,12 @@ export default {
     },
     ifPrev() {
       return this.page > 1;
+    },
+    userSelect() {
+      return this.$store.state.selectUser;
+    },
+    total() {
+      return this.$store.getters.totalPrint;
     },
   },
 };
