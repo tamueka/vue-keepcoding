@@ -5,6 +5,10 @@ import axios from 'axios';
 
 Vue.use(Vuex);
 
+Vue.filter('ponerGuion', text => `--${text}--`);
+
+Vue.filter('currency', price => `${price} €`);
+
 export default new Vuex.Store({
   state: {
     user: [],

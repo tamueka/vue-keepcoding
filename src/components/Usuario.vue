@@ -2,8 +2,9 @@
 <template>
   <div v-if="user" class="user">
     <img :src="user.avatar" alt="">
-    <div>{{user.first_name}} {{user.last_name}}</div>
-    <div>{{ user.email }}</div>
+    <div>{{user.first_name | ponerGuion}} {{user.last_name}}</div>
+    <div>{{ user.email | ponerGuion}}</div>
+    <div>{{ 30 | currency }}</div>
   </div>
 </template>
 
